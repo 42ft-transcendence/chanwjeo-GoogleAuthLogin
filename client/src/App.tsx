@@ -2,6 +2,7 @@ import './App.css'
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
 import axios from 'axios';
 import { useStore } from './hooks/useStore';
+import Profile from './components/Profile';
 
 function App() {
   const setAuthData = useStore((state: any) => state.setAuthData);
@@ -9,8 +10,8 @@ function App() {
     <>
       <GoogleOAuthProvider clientId='1033836631897-gbpjrcunclvk1fs9pt3nhrtestlh61vi.apps.googleusercontent.com'>
         <div>
-          Hello
           <GoogleLogin
+            useOneTap
             onSuccess={async (credentialResponse) => {
               console.log(credentialResponse);
               const response = await axios.post('http://localhost:3001/login', {
@@ -26,6 +27,8 @@ function App() {
             }}
           />
         </div>
+
+        <Profile />
       </GoogleOAuthProvider>
     </>
   )

@@ -16,7 +16,7 @@ export class AppService {
     name: string;
     image: string;
   }): Promise<any> {
-    const userExists = await this.userModel.findOne({email: email});
+    const userExists = await this.userModel.findOne({ email: email });
     if (!userExists) {
       const createdUser = new this.userModel({
         email,
